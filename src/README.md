@@ -11,4 +11,6 @@ All those fans will be controlled by an Arduino.
 Some temperature sensors will also be used to start and stop the fans when the required temperature
 is correct inside the enclosure. 
 
-Schematics to come when designed. Currently starting the project.
+Schematics to come when designed. 
+
+Currently starting the project.
