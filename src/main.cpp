@@ -3,6 +3,15 @@
 #include <LiquidCrystal.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+// Display definition
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+
 
 // Min temperature inside the enclosure
 #define MIN_TEMP 19.00
@@ -21,6 +30,9 @@
 #define DHTPIN 2
 #define DHTTYPE DHT11
 
+// Create display object
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
 // Create DHT object
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -30,15 +42,28 @@ LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 // Create the sensor object
 OneWire oneWire(ONEWIRE_BUS_PIN);
 DallasTemperature sensors(&oneWire);
-float celsius = 0.00;
-float farenheit = 0.00;
+float Celsius = 0.00;
 
 // Declare functions
 void displayTempHumi(float, float);
 
 void setup() {
+  Serial.begin(9600);
   dht.begin();
   lcd.begin(16,2);
+  sensors.begin();
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x78)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); // Don't proceed, loop forever
+  }
+
+  // Show initial display buffer contents on the screen --
+  // the library initializes this with an Adafruit splash screen.
+  display.display();
+  delay(2000); // Pause for 2 seconds
+
 }
 
 void loop() {
@@ -46,6 +71,12 @@ void loop() {
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
   displayTempHumi(temperature, humidity);
+
+  sensors.requestTemperatures();
+  Celsius = sensors.getTempCByIndex(0);
+  Serial.print("Temperature: ");
+  Serial.print(Celsius);
+  Serial.println(" C");
 }
 
 void displayTempHumi(float temp, float humi) {
