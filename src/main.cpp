@@ -63,7 +63,6 @@ void setup() {
   // the library initializes this with an Adafruit splash screen.
   display.display();
   delay(2000); // Pause for 2 seconds
-
 }
 
 void loop() {
