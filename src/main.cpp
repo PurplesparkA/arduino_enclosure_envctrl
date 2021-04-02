@@ -1,6 +1,4 @@
 #include <Arduino.h>
-#include "DHT.h"
-#include <LiquidCrystal.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>
@@ -26,35 +24,34 @@
 // Define the temperature probe pin
 #define ONEWIRE_BUS_PIN 5
 
-// DHT sensor configuration
-#define DHTPIN 2
-#define DHTTYPE DHT11
-
 // Create display object
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
-// Create DHT object
-DHT dht(DHTPIN, DHTTYPE);
-
-// Create LiquidCrystal object
-LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
 // Create the sensor object
 OneWire oneWire(ONEWIRE_BUS_PIN);
 DallasTemperature sensors(&oneWire);
 float Celsius = 0.00;
+float insideTemp = 0.00;
+float outsideTemp = 0.00;
+
+// Addresses of the sensors
+uint8_t insideSensor[8] = {0x28, 0x48, 0xE2, 0x75, 0xD0, 0x01, 0x3C, 0x7A};
+uint8_t outsideSensor[8] = {0x28, 0xF8, 0x0E, 0x75, 0xD0, 0x01, 0x3C, 0x86};
+
+// Fan activation
+bool coolFan = false;
+bool heatFan = false;
+bool exhaustFan = false;
 
 // Declare functions
-void displayTempHumi(float, float);
+void displayTemp();
 
 void setup() {
   Serial.begin(9600);
-  dht.begin();
-  lcd.begin(16,2);
   sensors.begin();
 
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x78)) {
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)) {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
@@ -66,25 +63,78 @@ void setup() {
 }
 
 void loop() {
-  delay(2000);
-  float humidity = dht.readHumidity();
-  float temperature = dht.readTemperature();
-  displayTempHumi(temperature, humidity);
-
+  delay(1000);
   sensors.requestTemperatures();
-  Celsius = sensors.getTempCByIndex(0);
-  Serial.print("Temperature: ");
-  Serial.print(Celsius);
-  Serial.println(" C");
+  // Celsius = sensors.getTempCByIndex(0);
+  outsideTemp = sensors.getTempC(outsideSensor);
+  insideTemp = sensors.getTempC(insideSensor);
+  displayTemp();
+  if(insideTemp <= MIN_TEMP) {
+    heatFan = true;
+    exhaustFan = true;
+    coolFan = false;
+    Serial.print("Heating Fan: on");
+    Serial.print(" -- ");
+    Serial.println("Exhaust Fan: on");
+  } else if (insideTemp >= MAX_TEMP) {
+    heatFan = false;
+    exhaustFan = true;
+    coolFan = true;
+    Serial.print("Cooling Fan: on");
+    Serial.print(" -- ");
+    Serial.println("Exhaust Fan: on");
+  } else {
+    heatFan = false;
+    exhaustFan = false;
+    coolFan = false;
+    Serial.println("All Fans: off");
+  }
 }
 
-void displayTempHumi(float temp, float humi) {
-  lcd.setCursor(0,0);
-  lcd.print("Humi: ");
-  lcd.print(humi);
-  lcd.print("%");
-  lcd.setCursor(0,1);
-  lcd.print("Temp: ");
-  lcd.print(temp);
-  lcd.print("C");
+void displayTemp() {
+  // Clear the display
+  display.clearDisplay();
+  //Set the color - always use white despite actual display color
+  display.setTextColor(WHITE);
+  //Set the font size
+  display.setTextSize(1);
+  //Set the cursor coordinates
+  display.setCursor(0,0);
+  display.print("Purplespark Enclosure");
+  display.setCursor(0,10); 
+  display.print("Inside: "); 
+  display.print(insideTemp);
+  display.print(" C");
+  display.setCursor(0,20);
+  display.print("Outside: ");
+  display.print(outsideTemp);
+  display.print(" C");
+  // Fan logic
+  // Heating fan
+  display.setCursor(0,30);
+  display.print("Heating fan: ");
+  if(heatFan) {
+    display.print("on");
+  } else {
+    display.print("off");
+  }
+  // Cooling fan
+  display.setCursor(0,40);
+  display.print("Cooling fan: ");
+  if(coolFan) {
+    display.print("on");
+  } else {
+    display.print("off");
+  }
+  // Exhaust fan
+  display.setCursor(0,50);
+  display.print("Exhaust fan: ");
+  if(exhaustFan) {
+    display.print("on");
+  } else {
+    display.print("off");
+  }
+
+  // Display
+  display.display();
 }
