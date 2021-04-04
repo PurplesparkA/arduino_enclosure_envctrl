@@ -45,13 +45,13 @@ bool heatFan = false;
 bool exhaustFan = false;
 
 // Fan icon
-static const unsigned char fan [] = {
-0xff, 0xff, 0xff, 0xff, 0xc3, 0xff, 0xfe, 0x7e, 0x7f, 0xf9, 0xf1, 0x9f, 0xf3, 0xef, 0x6f, 0xe7, 
-0xff, 0xa7, 0xef, 0xff, 0xb7, 0xdf, 0xef, 0xbb, 0xdc, 0x6f, 0xbb, 0xf7, 0xbf, 0xbf, 0xbf, 0xe7, 
-0x7d, 0xaf, 0xda, 0xfd, 0xaf, 0xdb, 0xfd, 0xaf, 0xa4, 0x7d, 0xef, 0x7f, 0xdf, 0xd6, 0xff, 0xdb, 
-0xd9, 0xff, 0xfb, 0xef, 0xef, 0xd7, 0xef, 0xef, 0xa7, 0xf3, 0xf0, 0x4f, 0xf9, 0xff, 0x9f, 0xfe, 
-0x7e, 0x7f, 0xff, 0xc3, 0xff, 0xff, 0xff, 0xff 
+const unsigned char fanBMP [] PROGMEM = {
+	0x03, 0x00, 0x00, 0x0f, 0x80, 0x00, 0x1f, 0x8e, 0x00, 0x3f, 0x9f, 0x80, 0x3f, 0x3f, 0x80, 0x1f, 
+	0x3f, 0x80, 0x1f, 0xff, 0xc0, 0x07, 0xff, 0x80, 0x21, 0x20, 0x00, 0x7f, 0xfc, 0x00, 0x7f, 0xbe, 
+	0x00, 0x7f, 0x3f, 0x00, 0x7f, 0x3f, 0x00, 0x3e, 0x7f, 0x00, 0x1c, 0x7e, 0x00, 0x00, 0x7c, 0x00, 
+	0x00, 0x10, 0x00
 };
+
 #define FAN_HEIGHT 24
 #define FAN_WIDTH 24
 
@@ -134,8 +134,11 @@ void displayTemp() {
 
   // Temperatures title
   display.setCursor(display.width()/2 - 36, 2);
-  display.print("TEMPERATURES");
   display.drawRect(0, 0, display.width(), 12, SSD1306_WHITE);
+  display.fillRect(0, 0, display.width(), 12, WHITE);
+  display.setTextColor(BLACK, WHITE);
+  display.print("TEMPERATURES");
+  display.setTextColor(WHITE);
 
   // Draw 2 rectangles for the temperatures
   display.drawRect(0,11, display.width()/2, 12, SSD1306_WHITE);
@@ -152,8 +155,11 @@ void displayTemp() {
 
   // Fans title
   display.drawRect(0, 22, display.width(), 12, SSD1306_WHITE);
+  display.fillRect(0, 22, display.width(), 12, WHITE);
   display.setCursor(display.width()/2 - 12, 24);
+  display.setTextColor(BLACK, WHITE);
   display.print("FANS");
+  display.setTextColor(WHITE);
   
   // Fan logic
   // Draw saparations
@@ -166,7 +172,8 @@ void displayTemp() {
   display.print("HEAT");
   display.setCursor(14, 52);
   if(heatFan) {
-    display.print("ON");
+    //display.print("ON");
+    display.drawBitmap(14, 45, fanBMP, 18, 17, WHITE);
   } else {
     display.print("OFF");
   }
@@ -176,7 +183,8 @@ void displayTemp() {
   display.print("COOL");
   display.setCursor(54, 52);
   if(coolFan) {
-    display.print("ON");
+    display.drawBitmap(54, 45, fanBMP, 18, 17, WHITE);
+    //display.print("ON");
   } else {
     display.print("OFF");
   }
@@ -186,7 +194,8 @@ void displayTemp() {
   display.print("EXH");
   display.setCursor(96, 52);
   if(exhaustFan) {
-    display.print("ON");
+    display.drawBitmap(96, 45, fanBMP, 18, 17, WHITE);
+    //display.print("ON");
   } else {
     display.print("OFF");
   }
