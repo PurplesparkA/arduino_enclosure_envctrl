@@ -44,6 +44,18 @@ bool coolFan = false;
 bool heatFan = false;
 bool exhaustFan = false;
 
+// Fan icon
+static const unsigned char fan [] = {
+0xff, 0xff, 0xff, 0xff, 0xc3, 0xff, 0xfe, 0x7e, 0x7f, 0xf9, 0xf1, 0x9f, 0xf3, 0xef, 0x6f, 0xe7, 
+0xff, 0xa7, 0xef, 0xff, 0xb7, 0xdf, 0xef, 0xbb, 0xdc, 0x6f, 0xbb, 0xf7, 0xbf, 0xbf, 0xbf, 0xe7, 
+0x7d, 0xaf, 0xda, 0xfd, 0xaf, 0xdb, 0xfd, 0xaf, 0xa4, 0x7d, 0xef, 0x7f, 0xdf, 0xd6, 0xff, 0xdb, 
+0xd9, 0xff, 0xfb, 0xef, 0xef, 0xd7, 0xef, 0xef, 0xa7, 0xf3, 0xf0, 0x4f, 0xf9, 0xff, 0x9f, 0xfe, 
+0x7e, 0x7f, 0xff, 0xc3, 0xff, 0xff, 0xff, 0xff 
+};
+#define FAN_HEIGHT 24
+#define FAN_WIDTH 24
+
+
 // Declare functions
 void displayTemp();
 void setFans();
@@ -117,44 +129,68 @@ void displayTemp() {
   display.setTextColor(WHITE);
   //Set the font size
   display.setTextSize(1);
+  // Draw a rectangle across the whole perimeter of the screen
+  display.drawRect(0, 0, display.width(), display.height(), SSD1306_WHITE);
+
+  // Temperatures title
+  display.setCursor(display.width()/2 - 36, 2);
+  display.print("TEMPERATURES");
+  display.drawRect(0, 0, display.width(), 12, SSD1306_WHITE);
+
+  // Draw 2 rectangles for the temperatures
+  display.drawRect(0,11, display.width()/2, 12, SSD1306_WHITE);
+  display.drawRect(display.width()/2 - 1, 11, display.width(), 12, SSD1306_WHITE);
   //Set the cursor coordinates
-  display.setCursor(0,0);
-  display.print("Purplespark 3D");
-  display.setCursor(0,10); 
-  display.print("Inside : "); 
+  display.setCursor(2,14);
+  display.print("I: ");
   display.print(insideTemp);
   display.print(" C");
-  display.setCursor(0,20);
-  display.print("Outside: ");
+  display.setCursor(display.width()/2 + 2, 14);
+  display.print("O: ");
   display.print(outsideTemp);
   display.print(" C");
 
+  // Fans title
+  display.drawRect(0, 22, display.width(), 12, SSD1306_WHITE);
+  display.setCursor(display.width()/2 - 12, 24);
+  display.print("FANS");
+  
   // Fan logic
-  // Heating fan
-  display.setCursor(0,30);
-  display.print("Heating: ");
-  if(heatFan) {
-    display.print("on");
-  } else {
-    display.print("off");
-  }
-  // Cooling fan
-  display.setCursor(0,40);
-  display.print("Cooling: ");
-  if(coolFan) {
-    display.print("on");
-  } else {
-    display.print("off");
-  }
-  // Exhaust fan
-  display.setCursor(0,50);
-  display.print("Exhaust: ");
-  if(exhaustFan) {
-    display.print("on");
-  } else {
-    display.print("off");
-  }
+  // Draw saparations
+  display.drawRect(0, 33, 42, display.height(), SSD1306_WHITE);
+  display.drawRect(41, 33, 42, display.height(), SSD1306_WHITE);
+  display.drawLine(0, 44, display.width(), 44, SSD1306_WHITE);
 
+  // Heating
+  display.setCursor(10,35);
+  display.print("HEAT");
+  display.setCursor(14, 52);
+  if(heatFan) {
+    display.print("ON");
+  } else {
+    display.print("OFF");
+  }
+  
+  // Cooling
+  display.setCursor(50,35);
+  display.print("COOL");
+  display.setCursor(54, 52);
+  if(coolFan) {
+    display.print("ON");
+  } else {
+    display.print("OFF");
+  }
+  
+  // Exhaust
+  display.setCursor(96,35);
+  display.print("EXH");
+  display.setCursor(96, 52);
+  if(exhaustFan) {
+    display.print("ON");
+  } else {
+    display.print("OFF");
+  }
+  
   // Display
   display.display();
 }
