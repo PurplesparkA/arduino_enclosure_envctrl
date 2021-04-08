@@ -13,6 +13,6 @@ is correct inside the enclosure.
 
 Schematics to come when designed. 
 
-![Diagram](other_files/enclosure_temp_control_electronics.png)
+![Diagram](https://github.com/acladenb5/arduino_enclosure_envctrl/blob/master/other_files/enclosure_temp_control_electronics.png)
 
 Currently starting the project.
