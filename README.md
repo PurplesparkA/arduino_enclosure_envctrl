@@ -1,4 +1,4 @@
-### Arduino 3d printer enclosure environmental control
+# Arduino 3d printer enclosure environmental control
 
 I wanted to get some space on my desk, and some quiet while 3d printing, so I decided to make an enclosure for my Ender 3 V2.
 However, considering its dimensions, I didn't go for the classic Ikea Lack table. And I'm not good at building wood things, so I went for the following:
@@ -11,14 +11,14 @@ The idea is to control the temperature inside this cabinet (and, in the near fut
 
 In order to do that, I decided to go with a bit of electronics with an Arduino as the brains of it all.
 
-### Diagram
+# Diagram
 First, let's do a diagram of what I want to do:
 
 ![Diagram](https://github.com/acladenb5/arduino_enclosure_envctrl/blob/master/other_files/enclosure_temp_control_electronics.png)
 
 I first did some testing with an Arduino Uno, but, for the final version, I went with an Arduino Nano, the rest was already acquired.
 
-### Bill of material
+# Bill of material
 
 Here is all that I'm using in this project:
 
@@ -32,5 +32,23 @@ Here is all that I'm using in this project:
 - [2 Noctua 12V fans](https://www.amazon.ca/gp/product/B07C5VG64V/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 - [12V Power supply](https://www.amazon.ca/gp/product/B0776R4SPT/ref=ppx_yo_dt_b_asin_title_o01_s01?ie=UTF8&psc=1)
 
+A soldering iron and solder pewter, and some cabling are also necessary, I've got those:
+- [Soldering Iron](https://www.amazon.ca/gp/product/B08LYVSNNM/ref=ppx_yo_dt_b_asin_title_o04_s01?ie=UTF8&psc=1)
 
-*Work in progress*
+# Developing the code of the application
+
+I used an Arduino Uno to do the first tests of this setup, and the code here is the result of those tests. I tested it and it works as I want it to. The code is probably not perfect, as I'm just an amateur at coding, but it does what I need it to.
+
+# Case for the project
+
+I included the source Fusion 360 file for the case I designed for this project, this is not the definitive version, I need to add a few things.
+I also included the STL files generated from this Fusion 360 design, for those who would want to give it a go.
+
+# Future development
+
+1. Change the case design:
+- Add hole for screwing the display to the top of the case.
+- Add the possibility to screw the top part to the botton one (for now they're just press fit).
+
+2. Depending on how the air circulation is working, change the heating fan+heating unit with a second intake fan and exhaust fan (I planned on putting the cabinet in a cold room I have at my place, but it will stay close to my desk, so no need for heating in this configuration).
+
