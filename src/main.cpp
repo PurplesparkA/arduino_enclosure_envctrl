@@ -16,10 +16,10 @@
 #define MAX_TEMP 25.00
 
 // Define the fan relay pins
-#define RELAY_PIN_COLD_FAN 10     // Relay IN1
-#define RELAY_PIN_HEAT_HEAD 11    // Relay IN2
-#define RELAY_PIN_HEAT_FAN 12     // Relay IN3
-#define RELAY_PIN_EXHAUST_FAN 13  // Relay IN4
+#define RELAY_PIN_COLD_FAN 0     // Relay IN1
+#define RELAY_PIN_HEAT_HEAD 1    // Relay IN2
+#define RELAY_PIN_HEAT_FAN 2     // Relay IN3
+#define RELAY_PIN_EXHAUST_FAN 3  // Relay IN4
 
 // Define the temperature probe pin
 #define ONEWIRE_BUS_PIN 5
