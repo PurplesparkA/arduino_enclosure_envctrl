@@ -25,5 +25,12 @@ Here is all that I'm using in this project:
 - [Ikea Smastad/Uppfora](https://www.ikea.com/ca/en/p/smastad-uppfoera-cabinet-white-gray-with-1-shelf-s69389791/)
 - [Elegoo Arduino Nano](https://www.amazon.ca/gp/product/B071NMD14Y/ref=ppx_yo_dt_b_asin_title_o08_s01?ie=UTF8&psc=1)
 - [Adapter Shield for Arduino Nano](https://www.amazon.ca/gp/product/B07YTZSR72/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
+- [OLED Display](https://www.amazon.ca/gp/product/B0751LFCZT/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1)
+- [DS1820B Temperature sensor](https://www.amazon.ca/gp/product/B012C597T0/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+- [Relays for the fan control](https://www.amazon.ca/gp/product/B07DN8DTRW/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1)
+- [Heater fan](https://www.amazon.ca/gp/product/B07YPNYP98/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
+- [2 Noctua 12V fans](https://www.amazon.ca/gp/product/B07C5VG64V/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+- [12V Power supply](https://www.amazon.ca/gp/product/B0776R4SPT/ref=ppx_yo_dt_b_asin_title_o01_s01?ie=UTF8&psc=1)
+
 
 *Work in progress*
