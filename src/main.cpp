@@ -55,7 +55,6 @@ const unsigned char fanBMP [] PROGMEM = {
 #define FAN_HEIGHT 24
 #define FAN_WIDTH 24
 
-
 // Declare functions
 void displayTemp();
 void setFans();
