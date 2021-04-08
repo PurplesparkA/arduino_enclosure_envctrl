@@ -13,7 +13,7 @@
 // Min temperature inside the enclosure
 #define MIN_TEMP 19.00
 // Max temperature inside the enclosure
-#define MAX_TEMP 24.00
+#define MAX_TEMP 25.00
 
 // Define the fan relay pins
 #define RELAY_PIN_COLD_FAN 10     // Relay IN1
