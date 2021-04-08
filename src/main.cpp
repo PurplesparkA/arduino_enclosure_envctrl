@@ -64,18 +64,17 @@ void setFans();
 void setup() {
   sensors.begin();
 
-  // Fan relay pins as output
-  pinMode(RELAY_PIN_COLD_FAN, OUTPUT);
-  pinMode(RELAY_PIN_HEAT_HEAD, OUTPUT);
-  pinMode(RELAY_PIN_HEAT_FAN, OUTPUT);
-  pinMode(RELAY_PIN_EXHAUST_FAN, OUTPUT);
-
   // Set the relays to HIGH to turn them off
   digitalWrite(RELAY_PIN_COLD_FAN,HIGH);
   digitalWrite(RELAY_PIN_HEAT_HEAD, HIGH);
   digitalWrite(RELAY_PIN_HEAT_FAN, HIGH);
   digitalWrite(RELAY_PIN_EXHAUST_FAN, HIGH);
 
+  // Fan relay pins as output
+  pinMode(RELAY_PIN_COLD_FAN, OUTPUT);
+  pinMode(RELAY_PIN_HEAT_HEAD, OUTPUT);
+  pinMode(RELAY_PIN_HEAT_FAN, OUTPUT);
+  pinMode(RELAY_PIN_EXHAUST_FAN, OUTPUT);
 
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)) {
