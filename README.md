@@ -43,6 +43,7 @@ I used an Arduino Uno to do the first tests of this setup, and the code here is 
 
 I included the source Fusion 360 file for the case I designed for this project, this is not the definitive version, I need to add a few things.
 I also included the STL files generated from this Fusion 360 design, for those who would want to give it a go.
+The whole dev process was done with VSCode with the Platform.io plugin, and it really works great. I prefer VSCode to Arduino IDE, because Intellisense and git integration.
 
 # Future development
 
