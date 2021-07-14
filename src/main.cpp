@@ -98,7 +98,7 @@ void loop() {
   outsideTemp = sensors.getTempC(outsideSensor);
   insideTemp = sensors.getTempC(insideSensor);
 
-  // Act on temperatures
+  // Act on temperatures - testing
   if(insideTemp <= MIN_TEMP) {
     heatFan = true;
     exhaustFan = true;

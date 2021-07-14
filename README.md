@@ -52,3 +52,6 @@ The whole dev process was done with VSCode with the Platform.io plugin, and it r
 - Add the possibility to screw the top part to the botton one (for now they're just press fit).
 
 2. Depending on how the air circulation is working, change the heating fan+heating unit with a second intake fan and exhaust fan (I planned on putting the cabinet in a cold room I have at my place, but it will stay close to my desk, so no need for heating in this configuration).
+
+
+
