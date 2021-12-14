@@ -14,7 +14,7 @@ In order to do that, I decided to go with a bit of electronics with an Arduino a
 # Diagram
 First, let's do a diagram of what I want to do:
 
-![Diagram](https://github.com/acladenb5/arduino_enclosure_envctrl/blob/master/other_files/enclosure_temp_control_electronics.png)
+![Diagram](https://github.com/PurplesparkA/arduino_enclosure_envctrl/blob/master/other_files/enclosure_temp_control_electronics.png)
 
 I first did some testing with an Arduino Uno, but, for the final version, I went with an Arduino Nano, the rest was already acquired.
 
