@@ -53,5 +53,5 @@ The whole dev process was done with VSCode with the Platform.io plugin, and it r
 
 2. Depending on how the air circulation is working, change the heating fan+heating unit with a second intake fan and exhaust fan (I planned on putting the cabinet in a cold room I have at my place, but it will stay close to my desk, so no need for heating in this configuration).
 
-
+3. Use a WiFi enabled board in order to get some IoT capabilities, like, for example, disabling the fans logic when the printer is not in use. Also connect OctoPrint to MQTT and add logic to automatically enable the fans control when a print is starting, then disabling the fans when the print is finished.
 
