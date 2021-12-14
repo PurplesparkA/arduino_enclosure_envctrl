@@ -55,3 +55,4 @@ The whole dev process was done with VSCode with the Platform.io plugin, and it r
 
 3. Use a WiFi enabled board in order to get some IoT capabilities, like, for example, disabling the fans logic when the printer is not in use. Also connect OctoPrint to MQTT and add logic to automatically enable the fans control when a print is starting, then disabling the fans when the print is finished, and also be able to set the maximum temperature, depending on the filament used (it is fixed, for now, for printing PLA).
 
+4. Change the display for a larger one, maybe a Nextion display to have some direct control through the touch screen.
